@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: web
-  replicas: 2 
+  replicas: 3
   minReadySeconds: 5
   strategy:
     type: RollingUpdate
@@ -24,7 +24,11 @@ spec:
       terminationGracePeriodSeconds: 1
       containers:
       - name: hello-pod
-        image: muzieh/getting-started-k8s:3.5
+        image: muzieh/getting-started-k8s:4.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        resources:
+          limits:
+            cpu: "200m"
+            memory: "128Mi"
